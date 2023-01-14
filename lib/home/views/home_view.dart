@@ -26,12 +26,6 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            )),
         title: Image.asset(
           'assets/images/nykaa-logo.png',
           height: 20,
