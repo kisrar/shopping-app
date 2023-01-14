@@ -28,11 +28,14 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: Colors.white,
         leading: IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Colors.black,
             )),
-        title: Text('Nyka'),
+        title: Image.asset(
+          'assets/images/nykaa-logo.png',
+          height: 20,
+        ),
         actions: [
           IconButton(
               onPressed: () {},
@@ -56,20 +59,24 @@ class _HomeViewState extends State<HomeView> {
               // mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
+                const Expanded(
                   child: Text(
                     'Nykaa Korean Beauty',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
+                      letterSpacing: 1.1,
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Text(
-                    '57 products',
-                    style: TextStyle(color: Colors.grey),
-                  ),
+                  child: Consumer<HomeViewModel>(
+                      builder: ((context, model, child) {
+                    return Text(
+                      '${model.totalRecords} products',
+                      style: const TextStyle(color: Colors.grey),
+                    );
+                  })),
                 ),
                 Expanded(
                   child: ListView(
@@ -116,7 +123,8 @@ class _HomeViewState extends State<HomeView> {
                       )
                     ],
                   ),
-                )
+                ),
+                const SizedBox(height: 5),
               ],
             ),
           ),

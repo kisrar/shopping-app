@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -9,6 +8,7 @@ class ShimmerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return Container(
       padding: EdgeInsets.all(getProportionateScreenWidth(10)),
       decoration: BoxDecoration(

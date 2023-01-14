@@ -74,7 +74,7 @@ class Product {
         variantAttributeGroupId: json["variant_attribute_group_id"],
         rating: json["rating"],
         discountPercentage: json["discount_percentage"],
-        image: json["image"],
+        image: 'https://my-beauty-world.s3.ap-south-1.amazonaws.com/${json["image"]}',
         mrp: json["mrp"],
         salePrice: json["sale_price"],
         variants: json["variants"] == null ? [] : json["variants"] == null ? [] : List<Variant?>.from(json["variants"]!.map((x) => Variant.fromJson(x))),

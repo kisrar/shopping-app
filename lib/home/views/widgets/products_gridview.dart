@@ -23,7 +23,9 @@ class _ProductsGridViewState extends State<ProductsGridView> {
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
           scrollController.offset) {
-        homeViewModel.getProducts(loadingMore: true);
+        if (homeViewModel.products.length < homeViewModel.totalRecords) {
+          homeViewModel.getProducts(loadingMore: true);
+        }
       }
     });
   }
@@ -45,7 +47,10 @@ class _ProductsGridViewState extends State<ProductsGridView> {
                   ? viewModel.products.length + 10
                   : viewModel.products.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
+                  crossAxisCount: 2,
+                  childAspectRatio: 2 / 3,
+                  mainAxisSpacing: 4,
+                  crossAxisSpacing: 4),
               itemBuilder: (context, index) {
                 if (index < viewModel.products.length) {
                   return ProductCard(product: viewModel.products[index]);
