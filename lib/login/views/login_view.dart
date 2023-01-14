@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nykaa/login/view_models/login_view_model.dart';
 import 'package:nykaa/login/views/widgets/bottom_curve.dart';
 import 'package:nykaa/login/views/widgets/login_fields.dart';
+import 'package:nykaa/utilities/size_config.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/top_curve.dart';
@@ -11,6 +12,7 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     var viewModel = Provider.of<LoginViewModel>(context, listen: false);
 
     return Scaffold(
@@ -25,21 +27,21 @@ class LoginView extends StatelessWidget {
               Text(
                 'Login',
                 style: TextStyle(
-                    fontSize: 40,
+                    fontSize: responsiveWidth(40),
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.2,
                     color: Colors.black54),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: responsiveHeight(20)),
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Stack(
                   alignment: Alignment.centerRight,
                   children: [
-                    LoginFields(),
+                    const LoginFields(),
                     Consumer<LoginViewModel>(builder: (context, model, child) {
-                      return Container(
+                      return SizedBox(
                         height: 70,
                         width: 70,
                         child: FittedBox(
@@ -50,8 +52,9 @@ class LoginView extends StatelessWidget {
                               viewModel.login(context);
                             },
                             child: viewModel.showLoader
-                                ? CircularProgressIndicator(color: Colors.white)
-                                : Icon(
+                                ? const CircularProgressIndicator(
+                                    color: Colors.white)
+                                : const Icon(
                                     Icons.arrow_forward,
                                   ),
                           ),

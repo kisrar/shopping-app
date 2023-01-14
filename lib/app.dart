@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nykaa/home/views/home_view.dart';
-import 'package:nykaa/login/repositories/login_repository.dart';
 import 'package:provider/provider.dart';
-
+import 'home/home.dart';
 import 'locator.dart';
-import 'home/repositories/home_repository.dart';
-import 'home/view_models/home_view_model.dart';
-import 'login/view_models/login_view_model.dart';
-import 'home/views/views.dart';
+import 'login/login.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -29,8 +24,7 @@ class App extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          // home: const LoginView(),
-          home: const HomeView(),
+          home: const LoginView(),
         ));
   }
 }

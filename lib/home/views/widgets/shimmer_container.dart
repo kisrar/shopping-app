@@ -10,7 +10,7 @@ class ShimmerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Container(
-      padding: EdgeInsets.all(getProportionateScreenWidth(10)),
+      padding: EdgeInsets.all(responsiveWidth(10)),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -48,7 +48,7 @@ class ShimmerItem extends StatelessWidget {
                     ),
                     Container(
                       width: double.infinity,
-                      height: getProportionateScreenHeight(20),
+                      height: responsiveHeight(20),
                       color: Colors.grey[400],
                     ),
                   ]),
@@ -82,7 +82,7 @@ class ShimmerContainer extends StatelessWidget {
         baseColor: Colors.grey.shade300,
         child: Container(
           width: double.infinity,
-          height: getProportionateScreenHeight(height),
+          height: responsiveHeight(height),
           color: Colors.grey.shade400,
         ),
       ),
