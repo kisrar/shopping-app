@@ -1,20 +1,130 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 
-class ProductsView extends StatefulWidget {
-  const ProductsView({super.key});
+import '../view_models/home_view_model.dart';
+import 'widgets/products_gridview.dart';
+
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
-  State<ProductsView> createState() => _ProductsViewState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _ProductsViewState extends State<ProductsView> {
+class _HomeViewState extends State<HomeView> {
+  late final HomeViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = Provider.of<HomeViewModel>(context, listen: false);
+    viewModel.getProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Products here'),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
+        title: Text('Nyka'),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search, color: Colors.black)),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.favorite_border, color: Colors.black)),
+          IconButton(
+              onPressed: () {},
+              icon:
+                  const Icon(Icons.shopping_bag_outlined, color: Colors.black))
+        ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(100),
+          child: Container(
+            height: 100,
+            color: Colors.white,
+            padding: const EdgeInsets.fromLTRB(16, 4, 0, 4),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              // mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    'Nykaa Korean Beauty',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    '57 products',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+                Expanded(
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Chip(
+                        side: BorderSide(width: 0.5, color: Colors.grey),
+                        padding: EdgeInsets.all(8),
+                        backgroundColor: Colors.white,
+                        //CircleAvatar
+                        label: Text(
+                          'Sheet Masks',
+                        ), //Text
+                      ),
+                      const SizedBox(width: 4),
+                      Chip(
+                        side: BorderSide(width: 0.5, color: Colors.grey),
+                        padding: EdgeInsets.all(8),
+                        backgroundColor: Colors.white,
+                        //CircleAvatar
+                        label: Text(
+                          'Masks & Peels',
+                        ), //Text
+                      ),
+                      const SizedBox(width: 4),
+                      Chip(
+                        side: BorderSide(width: 0.5, color: Colors.grey),
+                        padding: EdgeInsets.all(8),
+                        backgroundColor: Colors.white,
+                        //CircleAvatar
+                        label: Text(
+                          'Sleeping Masks',
+                        ), //Text
+                      ),
+                      const SizedBox(width: 4),
+                      Chip(
+                        side: BorderSide(width: 0.5, color: Colors.grey),
+                        padding: EdgeInsets.all(8),
+                        backgroundColor: Colors.white,
+                        //CircleAvatar
+                        label: Text(
+                          'Sleeping Masks',
+                        ), //Text
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: ProductsGridView(),
       ),
     );
   }

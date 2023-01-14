@@ -1,61 +1,49 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:nykaa/login/models/models.dart';
 
 import '../repositories/home_repository.dart';
 
-enum HomeStatus { showLoader, showSearching, showData, showEmpty}
+enum HomeStatus { showLoader, showData, showEmpty}
 
 class HomeViewModel extends ChangeNotifier {
   HomeViewModel({required HomeRepository homeRepository})
       : _homeRepository = homeRepository;
 
   final HomeRepository _homeRepository;
-  // List<MovieCardViewModel> movies = [];
+  List<Product> products = [];
   HomeStatus homeStatus = HomeStatus.showLoader;
-  bool _showSearchBar = false;
   int currentPage = 1;
-  int totalPage = 1;
+  int totalRecords = 1;
   bool isSearching = false;
-  TextEditingController searchTEC = TextEditingController();
-
-  void showHideSearchBar() {
-    _showSearchBar = !_showSearchBar;
-    notifyListeners();
-  }
-
-  bool get showSearchBar => _showSearchBar;
 
   
   Future<void> getProducts(
       {bool isRefresh = false, bool loadingMore = false}) async {
-    // isSearching = false;
 
-    // if (isRefresh) {
-    //   currentPage = 1;
-    // }
-    // if (loadingMore) {
-    //   homeStatus = HomeStatus.showLoader;
-    //   notifyListeners();
-    // }
+    if (isRefresh) {
+      currentPage = 1;
+    }
+    if (loadingMore) {
+      homeStatus = HomeStatus.showLoader;
+      notifyListeners();
+    }
 
-    // MovieResponseModel? movieResponseModel =
-    //     await _homeRepository.getProducts(page: currentPage++);
-    // totalPage = movieResponseModel?.totalPages ?? 1;
-    // List<MovieCardViewModel> newMovies = movieResponseModel?.movies
-    //         .map((movie) => MovieCardViewModel(movie: movie))
-    //         .toList() ??
-    //     [];
-    // if (isRefresh) {
-    //   movies = newMovies;
-    // } else {
-    //   movies.addAll(newMovies);
-    // }
-    // if (movies.isEmpty) {
-    //   homeStatus = HomeStatus.showEmpty;
-    // } else {
-    //   homeStatus = HomeStatus.showData;
-    // }
-    // notifyListeners();
+    ProductsResponseModel? productResponseModel =
+        await _homeRepository.getProducts(page: currentPage++);
+    totalRecords = productResponseModel?.totalRecords ?? 1;
+    List<Product> newProducts =productResponseModel?.products??[];
+    if (isRefresh) {
+      products = newProducts;
+    } else {
+      products.addAll(newProducts);
+    }
+    if (products.isEmpty) {
+      homeStatus = HomeStatus.showEmpty;
+    } else {
+      homeStatus = HomeStatus.showData;
+    }
+    notifyListeners();
   }
 }

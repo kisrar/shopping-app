@@ -42,7 +42,7 @@ abstract class NetworkHelper {
         case 201:
           Map<String, dynamic> responseMap = jsonDecode(response.body);
           debugPrint('Response in 200 & 201 case : ${response.body}');
-          if (responseMap['status'] == '1') {
+          if (responseMap['status'] == '1' || responseMap['status'] == 'success') {
             return onSuccess(responseMap);
           } else {
             return onFailure(responseMap,NetworkErrorResponseType.didNotSucceed,

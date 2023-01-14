@@ -7,27 +7,22 @@ class ProductsResponseModel {
         required this.heroImage,
     });
 
-    List<Product?>? products;
+    List<Product>? products;
     int? totalRecords;
     int? pageSize;
     int? pageNo;
     List<HeroImage?>? heroImage;
 
-    factory ProductsResponseModel.fromJson(Map<String, dynamic> json) => ProductsResponseModel(
+    factory ProductsResponseModel.fromJson(Map<String, dynamic> json) {
+      json = json['data'];
+      return ProductsResponseModel(
         products: json["products"] == null ? [] : List<Product>.from(json["products"]!.map((x) => Product.fromJson(x))),
         totalRecords: json["total_records"],
         pageSize: json["page_size"],
         pageNo: json["page_no"],
         heroImage: json["hero_image"] == null ? [] : List<HeroImage?>.from(json["hero_image"]!.map((x) => HeroImage.fromJson(x))),
     );
-
-    Map<String, dynamic> toJson() => {
-        "products": products == null ? [] : List<dynamic>.from(products!.map((x) => x!.toJson())),
-        "total_records": totalRecords,
-        "page_size": pageSize,
-        "page_no": pageNo,
-        "hero_image": heroImage == null ? [] : List<dynamic>.from(heroImage!.map((x) => x!.toJson())),
-    };
+    }
 }
 
 class HeroImage {
@@ -44,10 +39,7 @@ class HeroImage {
         mobileImage: json["mobile_image"],
     );
 
-    Map<String, dynamic> toJson() => {
-        "desktop_image": desktopImage,
-        "mobile_image": mobileImage,
-    };
+
 }
 
 class Product {
@@ -88,17 +80,7 @@ class Product {
         variants: json["variants"] == null ? [] : json["variants"] == null ? [] : List<Variant?>.from(json["variants"]!.map((x) => Variant.fromJson(x))),
     );
 
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "url_key": urlKey,
-        "variant_attribute_group_id": variantAttributeGroupId,
-        "rating": rating,
-        "discount_percentage": discountPercentage,
-        "image": image,
-        "mrp": mrp,
-        "sale_price": salePrice,
-    };
+
 }
 
 class Variant {

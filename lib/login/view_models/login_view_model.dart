@@ -22,7 +22,7 @@ class LoginViewModel extends ChangeNotifier {
         username: usernameTEC.text, passsword: passswordTEC.text);
     if (loginResponse?.status == '1') {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        return ProductsView();
+        return HomeView();
       }));
     } else {
       showLoader = false;
