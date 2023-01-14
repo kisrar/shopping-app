@@ -1,11 +1,10 @@
 import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../../../login/models/models.dart';
-import 'shimmer_container.dart';
+import '../../home.dart';
+
 
 class ProductCard extends StatelessWidget {
   final Product product;

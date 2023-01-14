@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nykaa/home/views/widgets/product_card.dart';
-import 'package:nykaa/home/views/widgets/shimmer_container.dart';
 import 'package:provider/provider.dart';
+import '../../home.dart';
 
-import '../../view_models/home_view_model.dart';
-import 'no_products_found.dart';
 
 class ProductsGridView extends StatefulWidget {
   const ProductsGridView({super.key});

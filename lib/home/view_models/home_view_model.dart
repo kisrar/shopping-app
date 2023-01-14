@@ -1,9 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:nykaa/login/models/models.dart';
 
-import '../repositories/home_repository.dart';
+import '../home.dart';
 
 enum HomeStatus { showLoader, showData, showEmpty}
 
